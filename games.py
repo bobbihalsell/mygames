@@ -4,7 +4,7 @@ from words import word_list
 import string
 import blackjack
 from art import rps_pic, hangman_pic, treasure_pic
-import peoplehl
+from peoplehl import higher_lower
 
 # guess the number computer chooses
 def number_guess_comp():
@@ -26,7 +26,7 @@ def number_guess_comp():
         elif guess > num:
             print('nope, too high.')
         guesses += 1
-    print(f'Congrats! you have guessed {num} correctly in {guess} guesses!')
+    print(f'Congrats! you have guessed {num} correctly in {guesses} guesses!')
 
 
 # guess the number you chooses
@@ -51,9 +51,10 @@ def number_guess_you():
         feedback = input(f'''\n Is {guess} too high (H) too low (L) or correct (C)? ''').lower()
         if feedback == 'h':
             high = guess - 1
+            guesses += 1
         elif feedback == 'l':
             low = guess + 1
-        guesses += 1
+            guesses += 1
     print(f'Yay, computer guessed your number, {guess}, correctly in {guesses} guesses!')
 
 
@@ -278,13 +279,12 @@ def menu():
                         2) Number Guessing Game - YOU CHOOSE
                         3) Rock Paper Scissors
                         4) Hangman
-                        5) Tic Tac Toe
-                        6) Random Band Name Generator
-                        7) Love Calculator
-                        8) Find the Treasure
-                        9) Ceasar Cipher
-                        10) Black Jack
-                        11) Higher or Lower - celebrities follower count
+                        5) Random Band Name Generator
+                        6) Love Calculator
+                        7) Find the Treasure
+                        8) Ceasar Cipher
+                        9) Black Jack
+                        10) Higher or Lower - celebrities follower count
                         B) BACK
         
                             ''').upper()
@@ -306,31 +306,28 @@ def get_to_game(choice):
             hangman()
 
         elif choice == '5':
-            pass
-
-        elif choice == '6':
             band_name()
         
-        elif choice == '7':
+        elif choice == '6':
             love_calculator()
         
-        elif choice == '8':
+        elif choice == '7':
             treasure_island()
         
-        elif choice == '9':
+        elif choice == '8':
             ceasar_c()
         
-        elif choice == '10':
+        elif choice == '9':
             blackjack.black_jack()
-        
-        elif choice == '11':
-            peoplehl.higher_lower()
+            
+        elif choice == '10':
+            higher_lower()
 
         again = input("To play again type '1' otherwise select any button to return to the main menu")
         if again == '1':
             get_to_game(choice)
     else: 
-        pass
+        menu()
 
 
 

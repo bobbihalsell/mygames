@@ -7,19 +7,21 @@ instructions = '''\nAn ACE can be 1 or 11.
                   \rIf the sum of your cards is higher than 21 BUST and you lose.'''
 
 def value_bj(cards):
-    values = []
+    value = 0
     ace = False
     for i in range(len(cards)):
         if cards[i] in ["JACK", "QUEEN", "KING"]:
-            values.append(10)
+            value+=10
         elif cards[i] == 'ACE':
-            values.append(1)
+            value+=11
             ace = True
         else:
-            values.append(cards[i])
-    if sum(values) > 21 and ace == True:
-        values -= 10 
-    return sum(values)
+            value+=cards[i]
+    if value > 21 and ace == True:
+        value -= 10 
+    if value > 21:
+        return 0
+    return value
 
 
         
@@ -48,9 +50,6 @@ def black_jack():
     comp_score = value_bj(comp_cards)
     print(f'''\nYOUR FINAL HAND: {players_cards} SCORE: {players_score}
               \rCOMPUTERS FINAL HAND: {comp_cards} SCORE: {comp_score}''')
-    for score in [players_score, comp_score]:
-        if score>21:
-            score =0
     if players_score > comp_score:
         print('YOU WIN')
     elif players_score == comp_score:

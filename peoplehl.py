@@ -47,8 +47,8 @@ def higher_lower():
             while personB in people_used:
                 personB = random.choice(people)
             people_used.append(personB)
+
+if __name__ == '__main__':
+    higher_lower()
             
-
-higher_lower()
-
-
+            
